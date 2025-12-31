@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Projeto IA{% endblock %}</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS custom -->
+    <link rel="stylesheet" href="{{ url_for('static', path='/style.css') }}">
+
+    <!-- Tailwind config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    },
+                    colors: {
+                        primary: 'var(--color-primary)',
+                        secondary: 'var(--color-secondary)',
+                        accent: 'var(--color-accent)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    {% block extra_head %}{% endblock %}
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-primary via-secondary to-accent text-gray-100 animated-gradient">
+
+    <!-- Navbar -->
+    <nav class="backdrop-blur-md glass-effect border-b border-white/20 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+
+            <a href="/" class="flex items-center gap-3">
+                <span class="text-3xl">🤖</span>
+                <span class="text-xl font-bold gradient-text">
+                    IA Vision
+                </span>
+            </a>
+
+            <div class="hidden md:flex gap-6">
+                <a href="/" class="hover:text-primary transition">Início</a>
+                <a href="/historico" class="hover:text-primary transition">Histórico</a>
+                <a href="/health" class="hover:text-primary transition">Status</a>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden text-2xl">☰</button>
+        </div>
+
+        <!-- Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 space-y-2">
+            <a href="/" class="block hover:text-primary">Início</a>
+            <a href="/historico" class="block hover:text-primary">Histórico</a>
+        </div>
+    </nav>
+
+    <!-- Conteúdo -->
+    <main class="max-w-4xl mx-auto px-4 py-10">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/20 text-center py-6 text-sm text-gray-400 glass-effect">
+        <p>🎓 Desenvolvido por <span class="text-primary font-semibold">[Seu Grupo]</span></p>
+        <p class="mt-1">FastAPI • Tailwind • Google Gemini</p>
+    </footer>
+
+    <script src="{{ url_for('static', path='/script.js') }}"></script>
+    <script>
+        // Toggle mobile menu
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

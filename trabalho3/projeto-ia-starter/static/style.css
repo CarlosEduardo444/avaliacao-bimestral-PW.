@@ -1,0 +1,282 @@
+/* 
+ * style.css - Estilos Customizados
+ * 
+ * Este arquivo complementa o Tailwind CSS com estilos personalizados.
+ * Use quando precisar de animações, estilos que o Tailwind não tem, etc.
+ */
+
+/* 🎨 Variáveis CSS Customizadas */
+:root {
+    --color-primary: #10b981; /* verde esmeralda */
+    --color-secondary: #06b6d4; /* ciano */
+    --color-accent: #7c3aed; /* roxo */
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* ✨ Reset e Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* 🎯 Scrollbar Customizada */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, var(--color-primary), var(--color-secondary));
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, #06b6d4, #7c3aed);
+}
+
+/* 🌟 Animações Personalizadas */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse-slow {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Aplicar animação de fadeIn em elementos */
+.fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* 🎨 Background Animado (Gradiente) */
+.animated-gradient {
+    background: linear-gradient(-45deg, #10b981, #06b6d4, #7c3aed, #22d3ee);
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite;
+}
+
+/* 💫 Efeito de Hover em Cards */
+.card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+}
+
+/* ✨ Slider de Range Customizado */
+input[type="range"].slider {
+    -webkit-appearance: none;
+    appearance: none;
+    background: linear-gradient(to right, var(--color-primary) 0%, var(--color-secondary) 100%);
+    outline: none;
+    border-radius: 10px;
+}
+
+input[type="range"].slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    background: var(--color-accent);
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    border: 3px solid var(--color-secondary);
+}
+
+input[type="range"].slider::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+    background: var(--color-accent);
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    border: 3px solid var(--color-secondary);
+}
+
+/* 🔮 Efeito Glass (vidro fosco) */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* 📝 Estilo para Textarea */
+textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/* 🎯 Loading Spinner */
+.spinner {
+    border: 3px solid rgba(99, 102, 241, 0.1);
+    border-top-color: var(--color-primary);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* 🌈 Texto com Gradiente Animado */
+.gradient-text {
+    background: linear-gradient(
+        90deg,
+        var(--color-primary),
+        var(--color-secondary),
+        var(--color-accent)
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shift 3s ease infinite;
+}
+
+/* ⚡ Botão com Efeito Ripple */
+.btn-ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-ripple:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn-ripple:active:after {
+    width: 300px;
+    height: 300px;
+}
+
+/* 📱 Responsividade Extra */
+@media (max-width: 640px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+/* 🎨 Utilitários Personalizados */
+.shadow-colored {
+    box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.3);
+}
+
+.border-gradient {
+    border-image: linear-gradient(45deg, var(--color-primary), var(--color-secondary)) 1;
+}
+
+/* 💬 Tooltip Simples */
+[data-tooltip] {
+    position: relative;
+}
+
+[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.5rem 1rem;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    z-index: 1000;
+}
+
+/* ✨ Transições Suaves Globais */
+a, button, input, textarea, select {
+    transition: all 0.2s ease;
+}
+
+/* 🎯 Focus Visível para Acessibilidade */
+:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* 🎪 Animação de Sucesso */
+.success-animation {
+    animation: successPulse 0.6s ease;
+}
+
+@keyframes successPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* 📊 Barra de Progresso */
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+    transition: width 0.3s ease;
+    z-index: 9999;
+}
